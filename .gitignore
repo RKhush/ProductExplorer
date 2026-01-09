@@ -1,0 +1,95 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Vite build output
+dist/
+
+# OS files
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# Misc
+*.cache
+
+# Database files
+*.sqlite
+*.db
+
+# Coverage
+coverage/
+
+# Build artifacts
+build/
+
+# Server output
+server/dist/
+
+# Optional: ignore public uploads
+public/uploads/
+
+# Optional: ignore test output
+*.test-results
+
+# Optional: ignore package-lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Optional: ignore generated files
+*.generated.js
+*.generated.ts
+
+# Optional: ignore temp files
+*.tmp
+*.temp
+
+# Optional: ignore backup files
+*.bak
+*.swp
+*.swo
+
+# Optional: ignore error dumps
+*.stackdump
+
+# Optional: ignore coverage reports
+coverage/
+
+# Optional: ignore next.js output
+.next/
+
+# Optional: ignore firebase
+.firebase/
+
+# Optional: ignore storybook
+.storybook/
+
+# Optional: ignore Cypress
+cypress/
+
+# Optional: ignore Playwright
+playwright-report/
