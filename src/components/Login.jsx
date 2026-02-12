@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
@@ -11,7 +10,7 @@ import {
   Alert,
   AlertIcon,
   useColorModeValue,
-  Spinner
+  Spinner,
 } from "@chakra-ui/react";
 
 const Login = () => {
@@ -26,10 +25,13 @@ const Login = () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/login`,
+        {
+          email,
+          password,
+        },
+      );
       login(res.data.user);
       setLoading(false);
     } catch (err) {
@@ -41,7 +43,13 @@ const Login = () => {
   const cardBg = undefined;
 
   return (
-    <VStack as="form" onSubmit={handleSubmit} spacing={4} align="stretch" borderRadius="md">
+    <VStack
+      as="form"
+      onSubmit={handleSubmit}
+      spacing={4}
+      align="stretch"
+      borderRadius="md"
+    >
       {error && (
         <Alert status="error" borderRadius="md">
           <AlertIcon />
@@ -68,7 +76,13 @@ const Login = () => {
           autoComplete="current-password"
         />
       </FormControl>
-      <Button type="submit" colorScheme="coffee" isLoading={loading} loadingText="Logging in..." fontWeight="bold">
+      <Button
+        type="submit"
+        colorScheme="coffee"
+        isLoading={loading}
+        loadingText="Logging in..."
+        fontWeight="bold"
+      >
         Login
       </Button>
     </VStack>
