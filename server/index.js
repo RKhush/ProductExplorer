@@ -9,6 +9,10 @@ const PORT = 4000;
 app.use(cors());
 app.use(express.json());
 
+// Auth routes
+const authRoutes = require('./routes/auth');
+app.use('/api', authRoutes);
+
 // Connect to MongoDB
 connectDB();
 
