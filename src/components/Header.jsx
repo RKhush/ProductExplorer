@@ -1,12 +1,14 @@
-import { Box, Flex, Heading, Spacer, Button, useColorMode, IconButton } from '@chakra-ui/react';
+import { Box, Flex, Heading, Spacer, Button, useColorMode, IconButton, Text } from '@chakra-ui/react';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { useFavorites } from '../hooks/useFavorites.jsx';
 import { useCart } from '../hooks/useCart.jsx';
+import { useAuth } from "../context/AuthContext";
 
-const Header = ({ onFavoritesOpen, onCartOpen }) => {
+const Header = ({ onFavoritesOpen, onCartOpen, onLoginOpen }) => {
   const { favorites } = useFavorites();
   const { cart } = useCart();
   const { colorMode, toggleColorMode } = useColorMode();
+  const { user, logout } = useAuth();
 
   return (
     <Box
@@ -23,8 +25,13 @@ const Header = ({ onFavoritesOpen, onCartOpen }) => {
       zIndex={200}
     >
       <Flex align="center" maxW="1200px" mx="auto">
-        <Heading as="h1" size="lg" fontFamily="Merriweather, Georgia, serif">Product Explorer</Heading>
+        <Heading as="h1" size="lg" fontFamily="Merriweather, Georgia, serif">
+          Product Explorer
+        </Heading>
+
         <Spacer />
+
+        {/* Favorites */}
         <IconButton
           icon={<FaHeart />}
           aria-label="Show Favorites"
@@ -34,16 +41,43 @@ const Header = ({ onFavoritesOpen, onCartOpen }) => {
           mr={2}
           onClick={onFavoritesOpen}
         />
+
+        {/* Cart */}
         <IconButton
           icon={<FaShoppingCart />}
           aria-label="Show Cart"
           colorScheme={cart.length ? 'green' : 'gray'}
           variant="ghost"
           size="md"
-          mr={2}
+          mr={4}
           onClick={onCartOpen}
         />
-        <Button onClick={toggleColorMode} size="md" fontWeight="bold" bg={colorMode === 'light' ? 'beige.500' : 'coffee.400'} color={colorMode === 'light' ? 'coffee.900' : 'beige.50'} _hover={{ bg: colorMode === 'light' ? 'beige.400' : 'coffee.300' }}>
+
+        {/* Auth Section */}
+        {!user ? (
+          <Button variant="solid" size="md" mr={4} onClick={onLoginOpen}>
+            Login
+          </Button>
+        ) : (
+          <>
+            <Text mr={4} fontWeight="bold">
+              Hey, {user.name} 👋
+            </Text>
+            <Button variant="outline" size="md" mr={4} onClick={logout}>
+              Logout
+            </Button>
+          </>
+        )}
+
+        {/* Theme Toggle */}
+        <Button
+          onClick={toggleColorMode}
+          size="md"
+          fontWeight="bold"
+          bg={colorMode === 'light' ? 'beige.500' : 'coffee.400'}
+          color={colorMode === 'light' ? 'coffee.900' : 'beige.50'}
+          _hover={{ bg: colorMode === 'light' ? 'beige.400' : 'coffee.300' }}
+        >
           {colorMode === 'light' ? 'Dark' : 'Light'} Mode
         </Button>
       </Flex>
